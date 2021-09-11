@@ -1,0 +1,32 @@
+
+
+server {
+
+	listen localhost:3001; 
+	server_name _;
+
+	location /tenkb {
+		root /home/sjordhani/Desktop/testobjects;
+	}
+	
+	location /hundredkb {
+		root /home/sjordhani/Desktop/testobjects;
+	}
+	
+	location /onemb {
+		root /home/sjordhani/Desktop/testobjects;
+	}
+	
+	location /twomb {
+		root /home/sjordhani/Desktop/testobjects;
+	}
+
+	location /eightmb {
+		root /home/sjordhani/Desktop/testobjects;
+	}
+	
+	location /tenmb {
+		root /home/sjordhani/Desktop/testobjects;
+	}
+	
+}
