@@ -3,7 +3,7 @@ Author: Stefano Jordhani, WPI Class of 2022
 Description: 
 
 This repository contains a script that will send a request to my NGINX server. The global configuration file and a test site configuration file are
-also both located inside this repository, named nginx.conf and test respectively. The script will check to see that the right arguments are
+also both located inside this repository, named nginx.conf and test respectively. Additionally, the zero-filled files are located in the testobjects folder in this repository. The script will check to see that the right arguments are
 given, will start the NGINX server, and will send a request using cURL to one of the URI's seen in the test configuration file. Depending on the URI,  
 the NGINX server will send back a file based on what is requested from the client (script/cURL). For this server, upon receiving GET requests, zero-
 filled files of size 10KB, 100KB, 1MB, 2MB, 8MB, and 10MB will be served back.
@@ -14,6 +14,7 @@ Requirements:
 * To successfully run the script, you will need to install cURL and NGINX on your machine. 
 * You will need to include the "test" site configuration file in your /etc/nginx/sites-available/ and /etc/nginx/sites-enabled/ directories. 
 * You will need to use the global configuration file named "nginx.conf" that is in the repository or make sure that you include the site configuration files that are in /etc/nginx/sites-enabled/ as such: 'include /etc/nginx/sites-enabled/*;'
+* You will need to correct the path of "root" in the "test" configuration file so that it points a directory where you will store the zero-filled files that are in "testobjects" inside this repository. 
 * Be aware that the test server will be listening on localhost:3001 
 
 
