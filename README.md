@@ -1,6 +1,6 @@
-Author: Stefano Jordhani, WPI Class of 2022
+# Author: Stefano Jordhani, WPI Class of 2022
  
-** sendreq.sh **
+## sendreq.sh 
 
 Description: 
 
@@ -36,7 +36,7 @@ How to run:
 * The [name of file] option is OPTIONAL and if given, will save the response received from the NGINX server under that name. Otherwise, the response will be downloaded with the default name in the current directory. 
 
 
-** req_h2load.sh **
+## req_h2load.sh
 
 Description: 
 
