@@ -72,3 +72,18 @@ How to run:
 * The [number of clients] option is REQUIRED and will be the number of clients that will be used to send the request(s) 
 * The [number of max streams] option is REQUIRED and will be the max number of concurrent streams when running the h2load command
 
+
+--- 
+
+### Exercise 2 
+
+#### Looking at strace: 
+
+After attaching strace to both the worker and master thread of nginx, I executed a request to the server from h2load and the files mastertrace and workertrace show the output. I also created a script that will make it easier to attach strace to processes. What I noticed when looking at the strace outputs was that the master thread doesn't seem to do much in terms of communicating with the kernel (through system calls) when a request is made to the server but the worker thread takes care of that. The master thread seemed to be making system calls if we stopped the nginx server for example. One interesting thing that I noticed in the workertrace was that the first system call that it makes is epoll_wait() which is waiting for the event represented by id 10 (first argument). I assume that this is waiting for those requests to come into NGINX and when close() is called on line 16 in workertrace, that is where the worker thread has finished handling the request and will resume listening which is shown with the epoll_wait() call on line 17. Another interesting thing about the workertrace log are lines 5 and 6: 
+
+recvfrom(3, "GET /tenkb HTTP/1.1\r\nHost: local"..., 1024, 0, NULL, NULL) = 80
+
+openat(AT_FDCWD, "/home/sjordhani/Desktop/testobjects/tenkb", O_RDONLY|O_NONBLOCK) = 12
+
+This is expected to occur as the thread is receiving the request with the details of the request that we sent (GET, host, URI) and then openat will try and open the file that is requested inside the root directory. We also see that openat does not return -1 which means it is returning the file descriptor (meaning file has been found).
+

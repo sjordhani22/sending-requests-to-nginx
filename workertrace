@@ -1,0 +1,17 @@
+3279  epoll_wait(10, [{EPOLLIN, {u32=4194210272, u64=140561293939168}}], 512, -1) = 1
+3279  accept4(8, {sa_family=AF_INET, sin_port=htons(32858), sin_addr=inet_addr("127.0.0.1")}, [112->16], SOCK_NONBLOCK) = 3
+3279  epoll_ctl(10, EPOLL_CTL_ADD, 3, {EPOLLIN|EPOLLRDHUP|EPOLLET, {u32=4194210737, u64=140561293939633}}) = 0
+3279  epoll_wait(10, [{EPOLLIN, {u32=4194210737, u64=140561293939633}}], 512, 60000) = 1
+3279  recvfrom(3, "GET /tenkb HTTP/1.1\r\nHost: local"..., 1024, 0, NULL, NULL) = 80
+3279  openat(AT_FDCWD, "/home/sjordhani/Desktop/testobjects/tenkb", O_RDONLY|O_NONBLOCK) = 12
+3279  fstat(12, {st_mode=S_IFREG|0664, st_size=10000, ...}) = 0
+3279  setsockopt(3, SOL_TCP, TCP_CORK, [1], 4) = 0
+3279  writev(3, [{iov_base="HTTP/1.1 200 OK\r\nServer: nginx/1"..., iov_len=265}], 1) = 265
+3279  sendfile(3, 12, [0] => [10000], 10000) = 10000
+3279  write(4, "127.0.0.1 - - [22/Sep/2021:10:11"..., 103) = 103
+3279  close(12)                         = 0
+3279  setsockopt(3, SOL_TCP, TCP_CORK, [0], 4) = 0
+3279  epoll_wait(10, [{EPOLLIN|EPOLLRDHUP, {u32=4194210737, u64=140561293939633}}], 512, 65000) = 1
+3279  recvfrom(3, "", 1024, 0, NULL, NULL) = 0
+3279  close(3)                          = 0
+3279  epoll_wait(10,  <detached ...>
