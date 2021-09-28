@@ -24,20 +24,19 @@ if [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]
 		echo "Incorrect arguments. Enter 'req_h2load.sh -help' for help."
 	elif [ "$5" = "tcp" ]
 		then
-			printf "Starting up NGINX server";
+			printf "__________Starting up NGINX server__________\n";
 			sudo systemctl start nginx;
 			h2load -n$2 -c$3 -m$4 --h1 http://localhost:3001/$1;
 
 	elif [ "$5" = "unix" ] 
 		then
-			printf "Starting up NGINX server";
-			sudo systemctl start nginx; 
-			h2load -n$2 -c$3 -m$4 --h1 --base-uri=unix:/var/run/test.sock http://localhost:3001/$1; 
+			printf "__________Starting up NGINX server__________\n";			sudo systemctl start nginx; 
+			h2load -n$2 -c$3 -m$4 --h1 --base-uri=unix:/tmp/test.socket http://localhost:3001/$1; 
 
 	else
-		printf "Starting up NGINX server";
-		sudo systemctl start nginx;
+		printf "__________Starting up NGINX server__________\n";			sudo systemctl start nginx;
+		printf "__________USING TCP_________\n";
 		h2load -n$2 -c$3 -m$4 --h1 http://localhost:3001/$1;
-		h2load -n$2 -c$3 -m$4 --h1 --base-uri=unix:/var/run/test.sock http://localhost:3001/$1;
-	
+		printf "__________USING UNIX_________\n";
+		h2load -n$2 -c$3 -m$4 --h1 --base-uri=unix:/tmp/test.socket http://localhost:3001/$1; 	
 fi;
