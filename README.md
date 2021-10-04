@@ -148,3 +148,9 @@ Reading the man page for recvfrom:
 * O_NONBLOCK flag enables non-blocking operation on the 'open file description' which affects all threads/calls
 * MSG_ERRQUEUE specifies that queued errors be received from the socket error queue and will be in the format of a sock_extended_err structure that contains information like the type of error, error number, and where it originated 
 
+--- 
+
+### Exercise 3
+
+For this exercise, I used openssl to generate a self-signed SSL certificate and then I modified my NGINX config file to use the certificate. I also modified the script 'req_h2load.sh' to talk to the NGINX server over TLS. I ran strace on the worker process for NGINX and added the output to this repository (named 'listenssl') to show that I set up the certificates and the config file successfully. If you look at the output file, you will see that NGINX was trying to read/write random bytes (this means the data has been encrypted).
+
