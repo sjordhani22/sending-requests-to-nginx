@@ -2,34 +2,12 @@
 server {
 
 	listen localhost:3001 ssl;
-	listen unix:/tmp/testing.socket ssl;
+	listen unix:/tmp/test.socket ssl;
 	server_name _;
 	ssl_certificate /home/sjordhani/Desktop/ssl/test.crt;
 	ssl_certificate_key /home/sjordhani/Desktop/ssl/test.key;
-	root /home/sjordhani/Desktop/testobjects;
 
-	location /tenkb {
-		
-	}
-	
-	location /hundredkb {
-	
-	}
-	
-	location /onemb {
-		
-	}
-	
-	location /twomb {
-		
-	}
-
-	location /eightmb {
-	
-	}
-	
-	location /tenmb {
-	
-	}
-	
+	location / {
+		root /home/sjordhani/Desktop/testobjects;
+	}	
 }
